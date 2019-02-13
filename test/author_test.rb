@@ -14,14 +14,13 @@ class AuthorTest < Minitest::Test
 
   def test_author_can_add_books
     @nk_jemisin.add_book("The Fifth Season", "November 3, 2015")
-    book_attributes = { author_first_name: "N.K",
-                        author_last_name: "Jesimin",
-                        title: "The Fifth Season",
-                        publication_date: "November 3, 2015" }
 
-    book = Book.new(book_attributes)
-
-    assert_equal [book], @nk_jemisin.books
+    assert_instance_of Book, @nk_jemisin.books.first
+    assert_equal 1, @nk_jemisin.books.length
+    assert_equal "N.K.", @nk_jemisin.books.first.author_first_name
+    assert_equal "Jemisin", @nk_jemisin.books.first.author_last_name
+    assert_equal "The Fifth Season", @nk_jemisin.books.first.title
+    assert_equal "2015", @nk_jemisin.books.first.publication_date
   end
 
 end
