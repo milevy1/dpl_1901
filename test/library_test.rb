@@ -56,7 +56,6 @@ class LibraryTest < Minitest::Test
   end
 
   def test_find_by_author
-    skip
     @dpl.add_to_collection(@fifth_season)
     @dpl.add_to_collection(@mockingbird)
     @dpl.add_to_collection(@kingdoms)
