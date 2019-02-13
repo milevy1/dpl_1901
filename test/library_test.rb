@@ -76,4 +76,11 @@ class LibraryTest < Minitest::Test
     assert_equal expected, @dpl.find_by_publication_date("1960")
   end
 
+  def test_flatten_a_group_by
+    grouped_hash = { "To Kill a Mockingbird" => [@mockingbird] }
+    expected = { "To Kill a Mockingbird" => @mockingbird }
+
+    assert_equal expected, @dpl.flatten_a_group_by(grouped_hash)
+  end
+
 end
