@@ -13,4 +13,8 @@ class Library
     @books.any? { |book| book.title == book_title }
   end
 
+  def library_catalogue
+    @books.sort_by { |book| book.author_last_name }
+  end
+
 end
