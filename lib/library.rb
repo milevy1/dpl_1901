@@ -28,4 +28,15 @@ class Library
     flattened_group
   end
 
+  def find_by_publication_date(year)
+    books_with_year = @books.select { |book| book.publication_date == year }
+
+    grouped = books_with_year.group_by { |book| book.title }
+
+    flattened_group = {}
+    grouped.each { |title, book| flattened_group[title] = book[0] }
+
+    flattened_group
+  end
+
 end
