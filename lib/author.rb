@@ -12,6 +12,7 @@ class Author
                           author_last_name: @last_name,
                           title: title,
                           publication_date: publication_date } )
+    @books.last # return the book just added
   end
 
 end
