@@ -22,10 +22,7 @@ class Library
 
     grouped = books_by_author.group_by { |book| book.title }
 
-    flattened_group = {}
-    grouped.each { |title, book| flattened_group[title] = book[0] }
-
-    flattened_group
+    flatten_a_group_by(grouped)
   end
 
   def find_by_publication_date(year)
@@ -33,8 +30,12 @@ class Library
 
     grouped = books_with_year.group_by { |book| book.title }
 
+    flatten_a_group_by(grouped)
+  end
+
+  def flatten_a_group_by(grouped_hash)
     flattened_group = {}
-    grouped.each { |title, book| flattened_group[title] = book[0] }
+    grouped_hash.each { |title, book| flattened_group[title] = book[0] }
 
     flattened_group
   end
