@@ -50,9 +50,37 @@ class LibraryTest < Minitest::Test
     @dpl.add_to_collection(@mockingbird)
 
     # alphabetical by last name
-    expected = [@fifth_season, @mockingbird, @kingdoms]
+    expected = [@kingdoms, @fifth_season, @mockingbird,]
 
     assert_equal expected, @dpl.card_catalogue
+  end
+
+  def test_find_by_author
+    @dpl.add_to_collection(@fifth_season)
+    @dpl.add_to_collection(@mockingbird)
+    @dpl.add_to_collection(@kingdoms)
+
+    expected = {  "The Fifth Season" => @fifth_season,
+                  "The Hundred Thousand Kingdoms" => @kingdoms }
+
+    assert_equal expected, @dpl.find_by_author("N.K. Jemisin")
+  end
+
+  def test_find_by_publication_date
+    @dpl.add_to_collection(@fifth_season)
+    @dpl.add_to_collection(@mockingbird)
+    @dpl.add_to_collection(@kingdoms)
+
+    expected = { "To Kill a Mockingbird" => @mockingbird }
+
+    assert_equal expected, @dpl.find_by_publication_date("1960")
+  end
+
+  def test_flatten_a_group_by
+    grouped_hash = { "To Kill a Mockingbird" => [@mockingbird] }
+    expected = { "To Kill a Mockingbird" => @mockingbird }
+
+    assert_equal expected, @dpl.flatten_a_group_by(grouped_hash)
   end
 
 end
