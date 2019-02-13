@@ -44,4 +44,15 @@ class LibraryTest < Minitest::Test
     assert_equal false, @dpl.include?("A Connecticut Yankee in King Arthur's Court")
   end
 
+  def test_library_catalogue
+    @dpl.add_to_collection(@kingdoms)
+    @dpl.add_to_collection(@fifth_season)
+    @dpl.add_to_collection(@mockingbird)
+
+    # alphabetical by last name
+    expected = [@fifth_season, @mockingbird, @kingdoms]
+
+    assert_equal expected, @dpl.card_catalogue
+  end
+
 end
