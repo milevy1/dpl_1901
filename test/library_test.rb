@@ -25,4 +25,14 @@ class LibraryTest < Minitest::Test
     assert_equal [@fifth_season], @dpl.books
   end
 
+  def test_library_can_add_multiple_books
+    @dpl.add_to_collection(@fifth_season)
+    @dpl.add_to_collection(@mockingbird)
+    @dpl.add_to_collection(@kingdoms)
+
+    expected = [@fifth_season, @mockingbird, @kingdoms]
+
+    assert_equal expected, @dpl.books
+  end
+
 end
